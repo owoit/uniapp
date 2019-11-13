@@ -11,7 +11,7 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				title: '现在你可以修改相关文件进行开发了'
 			}
 		},
 		onLoad() {

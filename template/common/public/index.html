@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <title>
             <%= htmlWebpackPlugin.options.title %>
         </title>
@@ -11,18 +11,94 @@
             document.addEventListener('DOMContentLoaded', function() {
                 document.documentElement.style.fontSize = document.documentElement.clientWidth / 20 + 'px'
             })
-            var coverSupport = 'CSS' in window && typeof CSS.supports === 'function' && (CSS.supports('top: env(a)') || CSS.supports('top: constant(a)'))
-            document.write('<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0' + (coverSupport ? ', viewport-fit=cover' : '') + '" />')
         </script>
         <link rel="stylesheet" href="<%= BASE_URL %>static/index.css" />
     </head>
-
     <body>
         <noscript>
-            <strong>Please enable JavaScript to continue.</strong>
+            <strong>请开启JavaScript</strong>
         </noscript>
         <div id="app"></div>
         <!-- built files will be auto injected -->
-    </body>
+<script src="//res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+		<script type="text/javascript">
+		  var host = '//' + window.location.host
+              ,uid = "<?=$data['id']?>"
+              ,openid = "<?=$data['openid'];?>"
+              ,nickname = "<?=$data['nickname'];?>"
+              ,realname = "<?=$data['realname'];?>"
+              ,mobile = "<?=$data['mobile'];?>"
+              ,myAvatar = "<?=$data['avatar'];?>"
+              ,why = '<?=$why;?>'
+              ,keyid = '<?=$keyid;?>'
+              ,formNick = "<?=$fromData['nickname'];?>"
+              ,formAvat = "<?=$fromData['avatar'];?>"
+              ,fromOpenid = "<?=$fromData['openid']?>"
+              ,fromID = "<?=$fromData['id'];?>";
+		</script>
 
+<script>
+    var mainAudio = document.getElementById('audio');
+    var clickSound = document.getElementById('click-sound');
+    document.addEventListener('WeixinJSBridgeReady', () => {
+        mainAudio.load();
+        clickSound.load();
+    })
+    
+    wx.config({
+        debug: false,
+        appId: "<?=$signPackage['appId']?>",
+        timestamp: "<?=$signPackage['timestamp']?>",
+        nonceStr: "<?=$signPackage['nonceStr']?>",
+        signature: "<?=$signPackage['signature']?>",
+        jsApiList: [
+            'updateAppMessageShareData',
+            'updateTimelineShareData',
+            'hideMenuItems'
+            //自由添加
+        ]
+    });
+    //定义消息分享数据
+    var shrData =
+        {
+            title: '分享标题',
+            desc: '分享描述（群聊、好友有）',
+            imgUrl: "<?=$data['ShrImg']?>",//转发的小图标默认存放在 项目文件夹下的"img/head.jpg" 正方形文件不宜超过50k,如果文件不存在就默认为转发人的头像，也可以自己根据项目需求写其他路径
+            link: "<?=$data['ShrLink']?>",//一般不需要改默认带转发人信息需要传特殊参数时可以更改
+            trigger: function (res) {
+
+            },
+            success: function (res) {
+                 //分享成功的回调
+                //注意！ 由于微信官方限制 现在已经无法获取真正的成功回调,只能判断用户有没有点过分享菜单
+            },
+            cancel: function (res) {
+                //已经失效
+            },
+            fail: function (res) {
+               //已经失效
+            }
+        };
+
+    wx.ready(function () {
+        wx.updateAppMessageShareData(shrData);//群、好友分享信息
+        wx.updateTimelineShareData(shrData)//朋友圈分享信息：在需要改分享标题之类时可修改shrData中的值并重先注册本方法
+        wx.hideMenuItems({
+            menuList: [
+                'menuItem:share:qq',
+                'menuItem:share:weiboApp',
+                'menuItem:share:facebook',
+                'menuItem:share:QZone',
+                'menuItem:originPage',
+                'menuItem:readMode',
+                'menuItem:openWithQQBrowser',
+                'menuItem:openWithSafari',
+                'menuItem:share:email',
+                'menuItem:share:brand',
+                'menuItem:copyUrl'
+            ]
+        });
+    });
+</script>
+    </body>
 </html>
