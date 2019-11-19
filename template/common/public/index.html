@@ -22,27 +22,27 @@
         <!-- built files will be auto injected -->
 <script src="//res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
 		<script type="text/javascript">
-		  var host = '//' + window.location.host
-              ,uid = "<?=$data['id']?>"
-              ,openid = "<?=$data['openid'];?>"
-              ,nickname = "<?=$data['nickname'];?>"
-              ,realname = "<?=$data['realname'];?>"
-              ,mobile = "<?=$data['mobile'];?>"
-              ,myAvatar = "<?=$data['avatar'];?>"
-              ,why = '<?=$why;?>'
-              ,keyid = '<?=$keyid;?>'
-              ,formNick = "<?=$fromData['nickname'];?>"
-              ,formAvat = "<?=$fromData['avatar'];?>"
-              ,fromOpenid = "<?=$fromData['openid']?>"
-              ,fromID = "<?=$fromData['id'];?>";
+		  var host = '//' + window.location.host　// //自动适应不同的域名和协议 其他接口统一使用这个host+具体的api
+              ,uid = "<?=$data['id']?>" //当前访问用户在系统中用户id
+              ,openid = "<?=$data['openid'];?>" //当前访问用户的微信openid (可以用区分微信用户)
+              ,nickname = "<?=$data['nickname'];?>"　//微信昵称
+              ,realname = "<?=$data['realname'];?>"　//　用户自己存在系统中真实姓名　（绑定到post.post接口中realname字段）
+              ,mobile = "<?=$data['mobile'];?>"　//　用户自己存在系统中的手机号码　（绑定到post.post接口中mobile字段）
+              ,myAvatar = "<?=$data['avatar'];?>" //用户授权登录页面时保存的微信头像
+              ,why = '<?=$why;?>'　//用来区分项目的参数对应访问路径中第一个“-”后的字符串，可以继续在项目中使用why+"你的区分符"来区分更多数据
+              ,keyid = '<?=$keyid;?>'//用来细分项目下不同批次数据的参数对应访问路径中第二个“－”后的字符串　同上why
+              ,formNick = "<?=$fromData['nickname'];?>"//分享链接时为分享用户的微信昵称，不是分享链接时为访问者自己的微信昵称
+              ,formAvat = "<?=$fromData['avatar'];?>"//分享链接时为分享用户微信头像，不是分享链接时为访问者自己的微信头像
+              ,fromOpenid = "<?=$fromData['openid']?>"//分享链接时为分享用户微信头像，不是分享链接时为访问者自己的openid即fromOpenid==openid
+              ,fromUID = "<?=$fromData['id'];?>";//分享链接时为分享用户的用户id，不是分享链接时为访问者自己的uid即fromUID == uid
 		</script>
 
 <script>
-    var mainAudio = document.getElementById('audio');
-    var clickSound = document.getElementById('click-sound');
+    // var mainAudio = document.getElementById('audio');
+    // var clickSound = document.getElementById('click-sound');
     document.addEventListener('WeixinJSBridgeReady', () => {
-        mainAudio.load();
-        clickSound.load();
+        // mainAudio.load();
+        // clickSound.load();
     })
     
     wx.config({
