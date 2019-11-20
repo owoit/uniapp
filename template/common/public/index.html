@@ -1,104 +1,159 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <title>
-            <%= htmlWebpackPlugin.options.title %>
-        </title>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                document.documentElement.style.fontSize = document.documentElement.clientWidth / 20 + 'px'
-            })
-        </script>
-        <link rel="stylesheet" href="<%= BASE_URL %>static/index.css" />
-    </head>
-    <body>
-        <noscript>
-            <strong>请开启JavaScript</strong>
-        </noscript>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="author" content="owoit@ishinan.net">
+		<meta name="generator" content="idea by ishiann，power by owoit">
+		<title>
+			<%= htmlWebpackPlugin.options.title %>
+		</title>
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				document.documentElement.style.fontSize = document.documentElement.clientWidth / 20 + 'px'
+			})
+		</script>
+		<style>
+			.shinan{
+				color: white;
+				font-size:0.58rem;
+				font-weight: 600;
+				text-align: center;
+			}
+			.ad,.tousu{
+				position: absolute;
+				width:1.188rem;
+				height: 0.889rem;
+				line-height: 0.898rem;
+				border: white solid .05rem;
+				top: .4rem;
+				z-index: 199203;
+				opacity: .8;
+			}
+			.ad{
+				left: 0.5rem;
+			}
+			.tousu{
+				right: 0.5rem;
+			}
+			.copy{
+				position: absolute;
+				z-index: 199203;
+				width: 100vw;
+				height: 1.58rem;
+				line-height: 1.58rem;
+				bottom: .5rem;
+				opacity: .8;
+			}
+		</style>
+		<link rel="stylesheet" href="<%= BASE_URL %>static/index.css?" />
+	</head>
+	<body>
+		<noscript>
+			<strong>请开启JavaScript</strong>
+		</noscript>
+		<div class="shinan">
+			<header>
+				<div class="ad">广告</div>
+				<div class="tousu" onClick="tousu()">投诉</div>
+			</header>
+			<footer>
+				<div class="copy">
+					技术创意:OwOIT@施南传媒
+				</div>
+			</footer>
+		</div>
         <div id="app"></div>
-        <!-- built files will be auto injected -->
-<script src="//res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+        <div class="bgm">
+            <audio src="<%= BASE_URL %>static/bgm.mp3" id="bgm" autoplay loop preload="metadata" style="display: none;"></audio>
+        </div>
+		<!-- built files will be auto injected -->
+
 		<script type="text/javascript">
-		  var host = '//' + window.location.host　// //自动适应不同的域名和协议 其他接口统一使用这个host+具体的api
-              ,uid = "<?=$data['id']?>" //当前访问用户在系统中用户id
-              ,openid = "<?=$data['openid'];?>" //当前访问用户的微信openid (可以用区分微信用户)
-              ,nickname = "<?=$data['nickname'];?>"　//微信昵称
-              ,realname = "<?=$data['realname'];?>"　//　用户自己存在系统中真实姓名　（绑定到post.post接口中realname字段）
-              ,mobile = "<?=$data['mobile'];?>"　//　用户自己存在系统中的手机号码　（绑定到post.post接口中mobile字段）
-              ,myAvatar = "<?=$data['avatar'];?>" //用户授权登录页面时保存的微信头像
-              ,why = '<?=$why;?>'　//用来区分项目的参数对应访问路径中第一个“-”后的字符串，可以继续在项目中使用why+"你的区分符"来区分更多数据
-              ,keyid = '<?=$keyid;?>'//用来细分项目下不同批次数据的参数对应访问路径中第二个“－”后的字符串　同上why
-              ,formNick = "<?=$fromData['nickname'];?>"//分享链接时为分享用户的微信昵称，不是分享链接时为访问者自己的微信昵称
-              ,formAvat = "<?=$fromData['avatar'];?>"//分享链接时为分享用户微信头像，不是分享链接时为访问者自己的微信头像
-              ,fromOpenid = "<?=$fromData['openid']?>"//分享链接时为分享用户微信头像，不是分享链接时为访问者自己的openid即fromOpenid==openid
-              ,fromUID = "<?=$fromData['id'];?>";//分享链接时为分享用户的用户id，不是分享链接时为访问者自己的uid即fromUID == uid
+			var host = '//' + window.location.host,
+				uid = "<?=$data['id']?>",
+				openid = "<?=$data['openid'];?>",
+				nickname = "<?=$data['nickname'];?>",
+				realname = "<?=$data['realname'];?>",
+				mobile = "<?=$data['mobile'];?>",
+				myAvatar = "<?=$data['avatar'];?>",
+				why = '<?=$why;?>',
+				keyid = '<?=$keyid;?>',
+				formNick = "<?=$fromData['nickname'];?>",
+				formAvat = "<?=$fromData['avatar'];?>",
+				fromOpenid = "<?=$fromData['openid']?>",
+                fromUID = "<?=$fromData['id'];?>",
 		</script>
 
-<script>
-    // var mainAudio = document.getElementById('audio');
-    // var clickSound = document.getElementById('click-sound');
-    document.addEventListener('WeixinJSBridgeReady', () => {
-        // mainAudio.load();
-        // clickSound.load();
-    })
-    
-    wx.config({
-        debug: false,
-        appId: "<?=$signPackage['appId']?>",
-        timestamp: "<?=$signPackage['timestamp']?>",
-        nonceStr: "<?=$signPackage['nonceStr']?>",
-        signature: "<?=$signPackage['signature']?>",
-        jsApiList: [
-            'updateAppMessageShareData',
-            'updateTimelineShareData',
-            'hideMenuItems'
-            //自由添加
-        ]
-    });
-    //定义消息分享数据
-    var shrData =
-        {
+	</body>
+	<script src="//res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+	<script>
+		function tousu() {
+			window.location.href =host+"/?-tousu-"+why+"-index-"+keyid;
+		}
+        var bgmAudio = document.getElementById('bgm');
+        document.addEventListener('WeixinJSBridgeReady', () => {
+             bgmAudio.load();
+             bgmAudio.play();
+        })
+        wx.config({
+            debug: false,
+            appId: "<?=$signPackage['appId']?>",
+            timestamp: "<?=$signPackage['timestamp']?>",
+            nonceStr: "<?=$signPackage['nonceStr']?>",
+            signature: "<?=$signPackage['signature']?>",
+            jsApiList: [
+                'updateAppMessageShareData',
+                'updateTimelineShareData',
+                "onMenuShareTimeline",
+                "onMenuShareAppMessage",
+                'hideMenuItems'
+                //自由添加
+            ]
+        });
+        //定义消息分享数据
+        var shrData = {
             title: '分享标题',
-            desc: '分享描述（群聊、好友有）',
-            imgUrl: "<?=$data['ShrImg']?>",//转发的小图标默认存放在 项目文件夹下的"img/head.jpg" 正方形文件不宜超过50k,如果文件不存在就默认为转发人的头像，也可以自己根据项目需求写其他路径
-            link: "<?=$data['ShrLink']?>",//一般不需要改默认带转发人信息需要传特殊参数时可以更改
-            trigger: function (res) {
+            desc: '分享摘要',
+            imgUrl: "<?=$data['ShrImg']?>", //转发的小图标默认存放在 项目文件夹下的"img/head.jpg" 正方形文件不宜超过50k,如果文件不存在就默认为转发人的头像，也可以自己根据项目需求写其他路径
+            link: "<?=$data['ShrLink']?>", //一般不需要改默认带转发人信息需要传特殊参数时可以更改
+            trigger: function(res) {
 
             },
-            success: function (res) {
-                 //分享成功的回调
+            success: function(res) {
+                //分享成功的回调
                 //注意！ 由于微信官方限制 现在已经无法获取真正的成功回调,只能判断用户有没有点过分享菜单
             },
-            cancel: function (res) {
+            cancel: function(res) {
                 //已经失效
             },
-            fail: function (res) {
-               //已经失效
+            fail: function(res) {
+                //已经失效
             }
         };
 
-    wx.ready(function () {
-        wx.updateAppMessageShareData(shrData);//群、好友分享信息
-        wx.updateTimelineShareData(shrData)//朋友圈分享信息：在需要改分享标题之类时可修改shrData中的值并重先注册本方法
-        wx.hideMenuItems({
-            menuList: [
-                'menuItem:share:qq',
-                'menuItem:share:weiboApp',
-                'menuItem:share:facebook',
-                'menuItem:share:QZone',
-                'menuItem:originPage',
-                'menuItem:readMode',
-                'menuItem:openWithQQBrowser',
-                'menuItem:openWithSafari',
-                'menuItem:share:email',
-                'menuItem:share:brand',
-                'menuItem:copyUrl'
-            ]
+        wx.ready(function() {
+            wx.updateAppMessageShareData(shrData); //群、好友分享信息
+            wx.updateTimelineShareData(shrData); //朋友圈分享信息：在需要改分享标题之类时可修改shrData中的值并重先注册本方法
+            // wx.onMenuShareTimeline(shrData); //旧接口
+            // wx.onMenuShareAppMessage(shrData);//旧j
+            wx.hideMenuItems({
+                menuList: [
+                    'menuItem:share:qq',
+                    'menuItem:share:weiboApp',
+                    'menuItem:share:facebook',
+                    'menuItem:share:QZone',
+                    'menuItem:originPage',
+                    'menuItem:readMode',
+                    'menuItem:openWithQQBrowser',
+                    'menuItem:openWithSafari',
+                    'menuItem:share:email',
+                    'menuItem:share:brand',
+                    'menuItem:copyUrl'
+                ]
+            });
         });
-    });
-</script>
-    </body>
+	</script>
 </html>
