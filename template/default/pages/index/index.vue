@@ -26,12 +26,10 @@
 <style>
 	.content {
 		text-align: center;
-		height: 400upx;
+		height: 1206upx;
 	}
 
 	.logo {
-		height: 200upx;
-		width: 200upx;
 		margin-top: 200upx;
 	}
 
