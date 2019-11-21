@@ -99,7 +99,6 @@ module.exports = (api, options, rootOptions) => {
       const ora = require('ora')
       const home = require('user-home')
       const download = require('download-git-repo')
-
       const spinner = ora('模板下载中...')
       spinner.start()
 
