@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,38 +19,39 @@
     <style>
         .shinan {
             color: white;
-            font-size: 0.58rem;
-            font-weight: 600;
+            font-size: 0.3rem;
+            font-weight: 500;
             text-align: center;
         }
-
         .ad,
         .tousu {
             position: absolute;
-            width: 1.188rem;
-            height: 0.889rem;
+            padding-left: .2rem;
+            padding-right: .2rem; ;
             border: white solid .05rem;
-            top: .4rem;
-            z-index: 199203;
             opacity: .8;
+            border-radius: 0.11rem;
+            box-shadow: 0.01rem;
         }
 
         .ad {
             left: 0.5rem;
+            z-index: 199203;
         }
 
         .tousu {
+            bottom: .1rem;
             right: 0.5rem;
         }
 
         .copy {
             position: absolute;
             z-index: 199203;
-            width: 100vw;
             height: 1.58rem;
-            bottom: .28rem;
+            bottom: .1rem;
             opacity: .8;
-        }
+            width: 100vw;
+                    }
     </style>
     <link rel="stylesheet" href="<%= BASE_URL %>static/index.css?" />
 </head>
@@ -98,49 +98,15 @@
     function tousu() {
         window.location.href = host + "/?-tousu-" + why + "-index-" + keyid;
     }
-    // 解决软键盘弹起出现的问题
-    var initScrolltop = document.body.scrollTop;
-    try {
-        document.getElementsByTagName('input').addEventListener('focus', function () {
-            document.activeElement.scrollIntoView({ behavior: "smooth" })
-            document.body.scrollTop = document.body.scrollHeight;
-            document.getElementById('snfooter').style.display = "none";
-        })
-        document.getElementsByTagName('textarea').addEventListener('focus', () => {
-            document.activeElement.scrollIntoView({ behavior: "smooth" })
-            document.body.scrollTop = document.body.scrollHeight;
-            document.getElementById('snfooter').style.display = "none";
-        })
-        document.getElementsByTagName('select').addEventListener('focus', () => {
-            document.activeElement.scrollIntoView({ behavior: "smooth" })
-            document.body.scrollTop = document.body.scrollHeight;
-            document.getElementById('snfooter').style.display = "none";
-        })
-        document.getElementsByTagName('input').addEventListener('blur', function () {
-            document.getElementById('snfooter').style.display = "block";
-            document.body.scrollTop = initScrolltop;
-
-        })
-        document.getElementsByTagName('textarea').addEventListener('blur', () => {
-            document.getElementById('snfooter').style.display = "block";
-            document.body.scrollTop = initScrolltop;
-
-        })
-        document.getElementsByTagName('select').addEventListener('blur', () => {
-            document.getElementById('snfooter').style.display = "block";
-            document.body.scrollTop = initScrolltop;
-
-        })
-    }
-    catch(err){
-
+    window.onresize=function(){
+        document.getElementById('snfooter').style.display="none";
     }
     var bgmAudio = document.getElementById('bgm');
     document.addEventListener('WeixinJSBridgeReady', () => {
         bgmAudio.load();
         bgmAudio.play();
     })
-    wx.config({
+    wx.config({ 
         debug: false,
         appId: "<?=$signPackage['appId']?>",
         timestamp: "<?=$signPackage['timestamp']?>",
@@ -197,5 +163,4 @@
         });
     });
 </script>
-
 </html>
