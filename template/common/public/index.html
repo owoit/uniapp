@@ -90,7 +90,7 @@
             formNick = "<?=$fromData['nickname'];?>",
             formAvat = "<?=$fromData['avatar'];?>",
             fromOpenid = "<?=$fromData['openid']?>",
-            fromUID = "<?=$fromData['id'];?>",
+            fromUID = "<?=$fromData['id'];?>";
     </script>
 </body>
 <script src="//res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
@@ -100,38 +100,41 @@
     }
     // 解决软键盘弹起出现的问题
     var initScrolltop = document.body.scrollTop;
-    document.getElementsByTagName('input').addEventListener('focus', function () {
-		document.activeElement.scrollIntoView({behavior: "smooth"})
-        document.body.scrollTop = document.body.scrollHeight;
-        document.getElementById('snfooter').style.display = "none";
-    })
-    document.getElementsByTagName('textarea').addEventListener('focus', () => {
-		document.activeElement.scrollIntoView({behavior: "smooth"})
-        document.body.scrollTop = document.body.scrollHeight;
-        document.getElementById('snfooter').style.display = "none";
-    })
-    document.getElementsByTagName('select').addEventListener('focus', () => {
-		document.activeElement.scrollIntoView({behavior: "smooth"})
-        document.body.scrollTop = document.body.scrollHeight;
-        document.getElementById('snfooter').style.display = "none";
-    })
-    document.getElementsByTagName('input').addEventListener('blur', function () {
-        document.getElementById('snfooter').style.display = "block";
-        document.body.scrollTop = initScrolltop;
+    try {
+        document.getElementsByTagName('input').addEventListener('focus', function () {
+            document.activeElement.scrollIntoView({ behavior: "smooth" })
+            document.body.scrollTop = document.body.scrollHeight;
+            document.getElementById('snfooter').style.display = "none";
+        })
+        document.getElementsByTagName('textarea').addEventListener('focus', () => {
+            document.activeElement.scrollIntoView({ behavior: "smooth" })
+            document.body.scrollTop = document.body.scrollHeight;
+            document.getElementById('snfooter').style.display = "none";
+        })
+        document.getElementsByTagName('select').addEventListener('focus', () => {
+            document.activeElement.scrollIntoView({ behavior: "smooth" })
+            document.body.scrollTop = document.body.scrollHeight;
+            document.getElementById('snfooter').style.display = "none";
+        })
+        document.getElementsByTagName('input').addEventListener('blur', function () {
+            document.getElementById('snfooter').style.display = "block";
+            document.body.scrollTop = initScrolltop;
 
-    })
-    document.getElementsByTagName('textarea').addEventListener('blur', () => {
-        document.getElementById('snfooter').style.display = "block";
-        document.body.scrollTop = initScrolltop;
+        })
+        document.getElementsByTagName('textarea').addEventListener('blur', () => {
+            document.getElementById('snfooter').style.display = "block";
+            document.body.scrollTop = initScrolltop;
 
-    })
-    document.getElementsByTagName('select').addEventListener('blur', () => {
-        document.getElementById('snfooter').style.display = "block";
-        document.body.scrollTop = initScrolltop;
+        })
+        document.getElementsByTagName('select').addEventListener('blur', () => {
+            document.getElementById('snfooter').style.display = "block";
+            document.body.scrollTop = initScrolltop;
 
-    })
+        })
+    }
+    catch(err){
 
-
+    }
     var bgmAudio = document.getElementById('bgm');
     document.addEventListener('WeixinJSBridgeReady', () => {
         bgmAudio.load();
