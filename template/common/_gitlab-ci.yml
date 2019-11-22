@@ -24,7 +24,7 @@ uniapp2h5-test:
   stage: deploy
   script: 
     - source /etc/profile
-    - keyid = "`date +%Y%m%d`"
+    - keyid="`date +%Y%m%d`"
     - yarn 
     - yarn cross-env NODE_ENV=development UNI_PLATFORM=h5 vue-cli-service uni-build
     - rm "$public""$CI_PROJECT_NAME"/ -vrf
