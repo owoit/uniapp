@@ -6,7 +6,8 @@ uniapp2h5-release:
   stage: deploy
   script:
     - source /etc/profile
-    - yarn 
+    - yarn
+    - sed -i "s/$CI_PROJECT_NAME/{{why}}/g" src/mainfest.json  
     - yarn cross-env NODE_ENV=production UNI_PLATFORM=h5 vue-cli-service uni-build
     - rm "$public""$CI_PROJECT_NAME"/ -vrf
     - mkdir "$public""$CI_PROJECT_NAME"/
@@ -25,14 +26,15 @@ uniapp2h5-test:
   script: 
     - source /etc/profile
     - keyid="`date +%Y%m%d`"
-    - yarn 
+    - yarn
+    - sed -i "s/$CI_PROJECT_NAME\/dev/{{why}}/g" src/mainfest.json 
     - yarn cross-env NODE_ENV=development UNI_PLATFORM=h5 vue-cli-service uni-build
-    - rm "$public""$CI_PROJECT_NAME"/ -vrf
-    - mkdir "$public""$CI_PROJECT_NAME"/
-    - mv  dist/dev/h5/* "$public""$CI_PROJECT_NAME"/ -vf
-    - mv "$public""$CI_PROJECT_NAME"/index.html "$public""$CI_PROJECT_NAME"/index.php -fv
-    - touch "$public""$CI_PROJECT_NAME"/test.owo
-    - touch "$public""$CI_PROJECT_NAME"/uni.owo
+    - rm "$public""$CI_PROJECT_NAME"/dev/ -vrf
+    - mkdir "$public""$CI_PROJECT_NAME"/dev/
+    - mv  dist/dev/h5/* "$public""$CI_PROJECT_NAME"/dev/ -vf
+    - mv "$public""$CI_PROJECT_NAME"/dev/index.html "$public""$CI_PROJECT_NAME"/dev/index.php -fv
+    - touch "$public""$CI_PROJECT_NAME"/dev/test.owo
+    - touch "$public""$CI_PROJECT_NAME"/dev/uni.owo
     - echo "=======测试版构建部署成功======"
     - echo "访问地址：https://dev.v0718.com/?-$CI_PROJECT_NAME-$keyid-index-"
     - echo "备用地址：https://now.v0718.com/?-$CI_PROJECT_NAME-$keyid-index-"
