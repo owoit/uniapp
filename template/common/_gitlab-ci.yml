@@ -13,7 +13,7 @@ uniapp2h5-release:
   script:
     - source /etc/profile
     - yarn
-    - sed -i "s/$CI_PROJECT_NAME/{{why}}/g" src/mainfest.json  
+    - sed -i "s/$CI_PROJECT_NAME/{{why}}/g" src/manifest.json  
     - yarn cross-env NODE_ENV=production UNI_PLATFORM=h5 vue-cli-service uni-build
     - rm "$public""$CI_PROJECT_NAME"/ -vrf
     - mkdir "$public""$CI_PROJECT_NAME"/
@@ -33,7 +33,7 @@ uniapp2h5-test:
     - source /etc/profile
     - keyid="`date +%Y%m%d`"
     - yarn
-    - sed -i "s/$CI_PROJECT_NAME\/dev/{{why}}/g" src/mainfest.json 
+    - sed -i "s/$CI_PROJECT_NAME\/dev/{{why}}/g" src/manifest.json 
     - yarn cross-env NODE_ENV=development UNI_PLATFORM=h5 vue-cli-service uni-build
     - rm "$public""$CI_PROJECT_NAME"/dev/ -vrf
     - mkdir "$public""$CI_PROJECT_NAME"/dev/
