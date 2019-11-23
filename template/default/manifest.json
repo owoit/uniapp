@@ -56,7 +56,7 @@
 	"h5": {
         "publicPath":"//cdn.v0718.com/{{why}}/",
         "router": {
-            "base":"/{{why}}}"
+            "base":"/{{why}}}/"
         }
 
 	},
