@@ -2,6 +2,12 @@
 # 
 stages:
   - deploy
+cache:
+  untracked: true
+  key: uni-apph5
+  paths:
+   - $(pwd)/.yarn-cache
+   - node_modules/
 uniapp2h5-release:
   stage: deploy
   script:
