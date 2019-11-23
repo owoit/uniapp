@@ -13,7 +13,7 @@ uniapp2h5-release:
   script:
     - source /etc/profile
     - yarn
-    - sed -i "s/$CI_PROJECT_NAME/{{why}}/g" src/manifest.json  
+    - sed -i "s/{{why}}/$CI_PROJECT_NAME/g" src/manifest.json  
     - yarn cross-env NODE_ENV=production UNI_PLATFORM=h5 vue-cli-service uni-build
     - rm "$public""$CI_PROJECT_NAME"/ -vrf
     - mkdir "$public""$CI_PROJECT_NAME"/
@@ -33,7 +33,7 @@ uniapp2h5-test:
     - source /etc/profile
     - keyid="`date +%Y%m%d`"
     - yarn
-    - sed -i "s/$CI_PROJECT_NAME\/dev/{{why}}/g" src/manifest.json 
+    - sed -i "s/{{why}}/$CI_PROJECT_NAME\dev/g" src/manifest.json  
     - yarn cross-env NODE_ENV=development UNI_PLATFORM=h5 vue-cli-service uni-build
     - rm "$public""$CI_PROJECT_NAME"/dev/ -vrf
     - mkdir "$public""$CI_PROJECT_NAME"/dev/
@@ -42,8 +42,8 @@ uniapp2h5-test:
     - touch "$public""$CI_PROJECT_NAME"/dev/test.owo
     - touch "$public""$CI_PROJECT_NAME"/dev/uni.owo
     - echo "=======测试版构建部署成功======"
-    - echo "访问地址：https://dev.v0718.com/?-$CI_PROJECT_NAME-$keyid-index-"
-    - echo "备用地址：https://now.v0718.com/?-$CI_PROJECT_NAME-$keyid-index-"
+    - echo "访问地址：https://dev.v0718.com/?-$CI_PROJECT_NAME/dev-$keyid-index-"
+    - echo "备用地址：https://now.v0718.com/?-$CI_PROJECT_NAME/dev-$keyid-index-"
     - echo -e "\033[41;30m 注意路径中的$keyid是keyid是为自定义的变量，上线后不可更改!所以如果已经上线的项目不要不同地址再发出去！！！其他变量及标记请到文档中查阅\033[0m"
     - echo -e "\033[41;30m 注意本链接仅用于内部测试，性能略低于正式版\033[0m"
   only:
