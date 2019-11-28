@@ -1,6 +1,6 @@
 {
 	"name": "{{name}}",
-	"appid": "",
+	"appid": "{{appid}}",
 	"description": "",
 	"versionName": "1.0.0",
 	"versionCode": "100",
@@ -53,6 +53,14 @@
 	"quickapp": { /* 快应用特有相关 */
 
 	},
+	"h5": {
+        "publicPath":"//cdn.v0718.com/{{why}}/",
+        "router": {
+            "base":"/{{why}}/"
+        }
+
+	},
+
 	"mp-weixin": { /* 微信小程序特有相关 */
 		"appid": "",
 		"setting": {

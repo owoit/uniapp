@@ -47,13 +47,6 @@
     "quickapp": { /* 快应用特有相关 */
 
     },
-    "h5": {
-        "publicPath":"//cdn.v0718.com/{{why}}/",
-        "router": {
-            "base":"/{{why}}/"
-        }
-
-	},
     "mp-weixin": { /* 小程序特有相关 */
         "usingComponents":true,
         "appid": "",
