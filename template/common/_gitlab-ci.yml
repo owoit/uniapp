@@ -34,7 +34,7 @@ uniapp2h5-test:
         - source /etc/profile
         - keyid="`date +%Y%m%d`"
         - yarn
-        - sed -i "s/{{why}}/$CI_PROJECT_NAME/g" src/manifest-ci.json
+        - sed -i "s/{{why}}/$CI_PROJECT_NAME\/dev\//g" src/manifest-ci.json
         - mv src/manifest-ci.json src/manifest.json -vf
         - yarn cross-env NODE_ENV=development UNI_PLATFORM=h5 vue-cli-service uni-build
         - rm "$public""$CI_PROJECT_NAME"/dev/ -vrf
