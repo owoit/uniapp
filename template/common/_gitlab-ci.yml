@@ -1,7 +1,6 @@
 # 开发测试分支
 # 
 stages:
-    - build
     - deploy
 cache:
     untracked: true
@@ -10,7 +9,7 @@ cache:
         - $(pwd)/.yarn-cache
         - node_modules/
 uniapp2h5-release:
-    stage: build
+    stage: deploy
     script:
         - source /etc/profile
         - yarn
@@ -20,28 +19,26 @@ uniapp2h5-release:
         - touch dist/build/h5/release.owo
         - touch dist/build/h5/uni.owo
         - echo "=======正式版构建成功======"
-    stage: deploy
-    script:
-         - mv dist/build/h5/index.html dist/build/h5/index.php -fv
-         - 'which ssh-agent || ( yum update -y && yum install openssh-client -y )'
-         - ssh-agent bash
-         - chmod 700 "$Pkey"
-         - eval "$(ssh-agent -s)"
-         - ssh-add "$Pkey"
-         - eval `ssh-agent`
-         - ssh-add "$Pkey"
-         - mkdir -p ~/.ssh
-         - chmod 700 ~/.ssh
-         - echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-         - chmod 644 ~/.ssh/known_hosts
-         - scp -P 22000  -r -v -B -C dist/build/h5/ www@h5.owoit.com:"$public""$CI_PROJECT_NAME"/
-         - echo "访问地址：https://dev.v0718.com/?-$CI_PROJECT_NAME-release-index-"
-         - echo "备用地址：https://now.v0718.com/?-$CI_PROJECT_NAME-release-index-"
-         - echo -e "\033[41;30m 注意路径中的release是keyid是为自定义的变量，上线后不可更改!所以如果已经上线的项目不要不同地址再发出去！！！其他变量及标记请到文档中查阅\033[0m"
+        - mv dist/build/h5/index.html dist/build/h5/index.php -fv
+        - 'which ssh-agent || ( yum update -y && yum install openssh-client -y )'
+        - ssh-agent bash
+        - chmod 700 "$Pkey"
+        - eval "$(ssh-agent -s)"
+        - ssh-add "$Pkey"
+        - eval `ssh-agent`
+        - ssh-add "$Pkey"
+        - mkdir -p ~/.ssh
+        - chmod 700 ~/.ssh
+        - echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+        - chmod 644 ~/.ssh/known_hosts
+        - scp -P 22000  -r -v -B -C dist/build/h5/ www@h5.owoit.com:"$public""$CI_PROJECT_NAME"/
+        - echo "访问地址：https://dev.v0718.com/?-$CI_PROJECT_NAME-release-index-"
+        - echo "备用地址：https://now.v0718.com/?-$CI_PROJECT_NAME-release-index-"
+        - echo -e "\033[41;30m 注意路径中的release是keyid是为自定义的变量，上线后不可更改!所以如果已经上线的项目不要不同地址再发出去！！！其他变量及标记请到文档中查阅\033[0m"
     only:
         - release
 uniapp2h5-test:
-    stage: build
+    stage: deploy
     script: 
         - source /etc/profile
         - keyid="`date +%Y%m%d`"
@@ -52,24 +49,22 @@ uniapp2h5-test:
         - touch dist/build/dev/test.owo
         - touch dist/build/dev/uni.owo
         - echo "=======正式版构建成功======"
-    stage: deploy
-    script:
-         - mv dist/build/h5/index.html dist/build/h5/index.php -fv
-         - 'which ssh-agent || ( yum update -y && yum install openssh-client -y )'
-         - ssh-agent bash
-         - chmod 700 "$Pkey"
-         - eval "$(ssh-agent -s)"
-         - ssh-add "$Pkey"
-         - eval `ssh-agent`
-         - ssh-add "$Pkey"
-         - mkdir -p ~/.ssh
-         - chmod 700 ~/.ssh
-         - echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-         - chmod 644 ~/.ssh/known_hosts
-         - scp -P 22000  -r -v -B -C dist/build/h5/ www@h5.owoit.com:"$public""$CI_PROJECT_NAME"/dev/
-         - echo "访问地址：https://dev.v0718.com/?-$CI_PROJECT_NAME/dev-test-index-"
-         - echo "备用地址：https://now.v0718.com/?-$CI_PROJECT_NAME/dev-test-index-"
-         - echo -e "\033[41;30m 注意路径中的test是keyid是为自定义的变量，上线后不可更改!所以如果已经上线的项目不要不同地址再发出去！！！其他变量及标记请到文档中查阅\033[0m"
+        - mv dist/build/h5/index.html dist/build/h5/index.php -fv
+        - 'which ssh-agent || ( yum update -y && yum install openssh-client -y )'
+        - ssh-agent bash
+        - chmod 700 "$Pkey"
+        - eval "$(ssh-agent -s)"
+        - ssh-add "$Pkey"
+        - eval `ssh-agent`
+        - ssh-add "$Pkey"
+        - mkdir -p ~/.ssh
+        - chmod 700 ~/.ssh
+        - echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+        - chmod 644 ~/.ssh/known_hosts
+        - scp -P 22000  -r -v -B -C dist/build/h5/ www@h5.owoit.com:"$public""$CI_PROJECT_NAME"/dev/
+        - echo "访问地址：https://dev.v0718.com/?-$CI_PROJECT_NAME/dev-test-index-"
+        - echo "备用地址：https://now.v0718.com/?-$CI_PROJECT_NAME/dev-test-index-"
+        - echo -e "\033[41;30m 注意路径中的test是keyid是为自定义的变量，上线后不可更改!所以如果已经上线的项目不要不同地址再发出去！！！其他变量及标记请到文档中查阅\033[0m"
     only:
         - develop
 
