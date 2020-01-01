@@ -27,7 +27,7 @@ uniapp2h5-release:
         - chmod 700 ~/.ssh
         - echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
         - chmod 644 ~/.ssh/known_hosts
-        - ssh -i "$Pkey" www@h5.owoit.com -p 22000 mkdir -p "$public""$CI_PROJECT_NAME"&&"$public""$CI_PROJECT_NAME"/dev 
+        - ssh -i "$Pkey" www@h5.owoit.com -p 22000 mkdir -p "$public""$CI_PROJECT_NAME" 
         - scp -i "$Pkey" -P 22000  -r -B -C dist/build/h5/* www@h5.owoit.com:"$public""$CI_PROJECT_NAME"/
         - echo "访问地址：https:///h5.owoit.com/?-$CI_PROJECT_NAME-release-index-"
         - echo -e "\033[41;30m 注意路径中的release是keyid是为自定义的变量，上线后不可更改!所以如果已经上线的项目不要不同地址再发出去！！！其他变量及标记请到文档中查阅\033[0m"
