@@ -78,8 +78,10 @@
     </div>
     <!-- built files will be auto injected -->
     <script type="text/javascript">
-        var host = '//' + window.location.host+"/venshi/?service=",
-            uid = "<?=$data['id']?>",
+        var host = window.location.host,
+            apiUrl = '//' +host+"/venshi/?service=";
+        if(host.indexOf('localhost') == -1){
+            var uid = "<?=$data['id']?>",
             openid = "<?=$data['openid'];?>",
             nickname = "<?=$data['nickname'];?>",
             realname = "<?=$data['realname'];?>",
@@ -90,7 +92,24 @@
             formNick = "<?=$fromData['nickname'];?>",
             formAvat = "<?=$fromData['avatar'];?>",
             fromOpenid = "<?=$fromData['openid']?>",
-            fromUID = "<?=$fromData['id'];?>";
+            fromUID = "<?=$fromData['id'];?>",
+            time = parseInt("<?=time();?>");
+        }else{
+            var uid = "59820",
+            openid = "sncmowoit",
+            nickname = "施南传媒",
+            realname = "湖北施南烟雨传媒有限公司",
+            mobile = "18671881885",
+            myAvatar = "",
+            why = '',
+            keyid = 'local',
+            formNick = "施南传媒",
+            formAvat = "",
+            fromOpenid = "sncmowoit",
+            fromUID = "59820",
+            time =  parseInt(Date.parse(new Date())/1000);
+        }
+        
     </script>
 </body>
 <script src="//res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
