@@ -1,14 +1,20 @@
 {
-	"pages": [
-		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "施南传媒H5"
-			}
-		}
-	],
-	"globalStyle": {
-		"backgroundColor": "#F8F8F8",
-		"navigationStyle":"custom"
-	}
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "施南传媒H5"
+      }
+    },
+    {
+      "path": "pages/demo/demo",
+      "style": {
+        "navigationBarTitleText": "演示代码"
+      }
+    }
+  ],
+  "globalStyle": {
+    "backgroundColor": "#F8F8F8",
+    "navigationStyle": "custom"
+  }
 }
