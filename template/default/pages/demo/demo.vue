@@ -1,7 +1,6 @@
 <template>
   <view>
-    <text>上传图片到自己的服务器测试</text>
-    <button @click="uploadToServer"></button>
+   <button @click="uploadToServer">上传到自建服务器测试</button> 
   </view>
 </template>
 <script>
@@ -12,10 +11,10 @@ export default {
   methods: {
     uploadToServer() {
       uni.chooseImage({
-        success: chooseImageRes => {
+       success: chooseImageRes => {
           const tempFilePaths = chooseImageRes.tempFilePaths;
           const uploadTask = uni.uploadFile({
-            url: ApiUrl + "Post.Post", //仅为示例，非真实的接口地址
+            url: apiUrl + "Post.Post", //仅为示例，非真实的接口地址
             filePath: tempFilePaths[0],
             name: "file",
             formData: {

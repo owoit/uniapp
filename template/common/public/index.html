@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,11 +24,13 @@
             font-weight: 500;
             text-align: center;
         }
+
         .ad,
         .tousu {
             position: absolute;
             padding-left: .2rem;
-            padding-right: .2rem; ;
+            padding-right: .2rem;
+            ;
             border: white solid .05rem;
             top: .4rem;
             z-index: 199203;
@@ -51,7 +54,7 @@
             bottom: .05rem;
             opacity: .8;
             width: 100vw;
-                    }
+        }
     </style>
     <link rel="stylesheet" href="<%= BASE_URL %>static/index.css?<?=$v;?>" />
 </head>
@@ -71,75 +74,72 @@
             </div>
         </footer>
     </div>
-    <div id="app"></div
-    <div class="bgm">
-        <audio src="<%= BASE_URL %>static/bgm.mp3" id="bgm" autoplay loop preload="metadata"
-            style="display: none;"></audio>
+    <div id="app"></div <div class="bgm">
+    <audio src="<%= BASE_URL %>static/bgm.mp3" id="bgm" autoplay loop preload="metadata" style="display: none;"></audio>
     </div>
     <!-- built files will be auto injected -->
     <script type="text/javascript">
         var host = window.location.host,
-            apiUrl = '//' +host+"/venshi/?service=";
-        if(host.indexOf('localhost') == -1){
+            apiUrl = '//' + host + "/venshi/?service=";
+        if (host.indexOf('localhost') == -1) {
             var uid = "<?=$data['id']?>",
-            openid = "<?=$data['openid'];?>",
-            nickname = "<?=$data['nickname'];?>",
-            realname = "<?=$data['realname'];?>",
-            mobile = "<?=$data['mobile'];?>",
-            myAvatar = "<?=$data['avatar'];?>",
-            why = '<?=$why;?>',
-            keyid = '<?=$keyid;?>',
-            formNick = "<?=$fromData['nickname'];?>",
-            formAvat = "<?=$fromData['avatar'];?>",
-            fromOpenid = "<?=$fromData['openid']?>",
-            fromUID = "<?=$fromData['id'];?>",
-            time = parseInt("<?=time();?>");
-        }else{
+                openid = "<?=$data['openid'];?>",
+                nickname = "<?=$data['nickname'];?>",
+                realname = "<?=$data['realname'];?>",
+                mobile = "<?=$data['mobile'];?>",
+                myAvatar = "<?=$data['avatar'];?>",
+                why = '<?=$why;?>',
+                keyid = '<?=$keyid;?>',
+                formNick = "<?=$fromData['nickname'];?>",
+                formAvat = "<?=$fromData['avatar'];?>",
+                fromOpenid = "<?=$fromData['openid']?>",
+                fromUID = "<?=$fromData['id'];?>",
+                time = parseInt("<?=time();?>");
+        } else {
             var uid = "59820",
-            openid = "sncmowoit",
-            nickname = "施南传媒",
-            realname = "湖北施南烟雨传媒有限公司",
-            mobile = "18671881885",
-            myAvatar = "",
-            why = '',
-            keyid = 'local',
-            formNick = "施南传媒",
-            formAvat = "",
-            fromOpenid = "sncmowoit",
-            fromUID = "59820",
-            time =  parseInt(Date.parse(new Date())/1000);
+                openid = "sncmowoit",
+                nickname = "施南传媒",
+                realname = "湖北施南烟雨传媒有限公司",
+                mobile = "18671881885",
+                myAvatar = "",
+                why = '',
+                keyid = 'local',
+                formNick = "施南传媒",
+                formAvat = "",
+                fromOpenid = "sncmowoit",
+                fromUID = "59820",
+                time = parseInt(Date.parse(new Date()) / 1000);
         }
-        
+        var wxConfig = {
+            debug: false,
+            appId: "<?=$signPackage['appId']?>",
+            timestamp: "<?=$signPackage['timestamp']?>",
+            nonceStr: "<?=$signPackage['nonceStr']?>",
+            signature: "<?=$signPackage['signature']?>",
+            jsApiList: [
+                'updateAppMessageShareData',
+                'updateTimelineShareData',
+                "onMenuShareTimeline",
+                "onMenuShareAppMessage",
+                'hideMenuItems'
+                //自由添加
+            ]
+        };
     </script>
 </body>
-<script src="//res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
 <script>
     function tousu() {
         window.location.href = host + "/?-tousu-" + why + "-index-" + keyid;
     }
-    window.onresize=function(){
-        document.getElementById('snfooter').style.display="none";
+    window.onresize = function () {
+        document.getElementById('snfooter').style.display = "none";
     }
     var bgmAudio = document.getElementById('bgm');
     document.addEventListener('WeixinJSBridgeReady', () => {
         bgmAudio.load();
         bgmAudio.play();
     })
-    wx.config({ 
-        debug: false,
-        appId: "<?=$signPackage['appId']?>",
-        timestamp: "<?=$signPackage['timestamp']?>",
-        nonceStr: "<?=$signPackage['nonceStr']?>",
-        signature: "<?=$signPackage['signature']?>",
-        jsApiList: [
-            'updateAppMessageShareData',
-            'updateTimelineShareData',
-            "onMenuShareTimeline",
-            "onMenuShareAppMessage",
-            'hideMenuItems'
-            //自由添加
-        ]
-    });
+
     //定义消息分享数据
     var shrData = {
         title: '分享标题',
@@ -160,26 +160,7 @@
             //已经失效
         }
     };
-    wx.ready(function () {
-        wx.updateAppMessageShareData(shrData); //群、好友分享信息
-        wx.updateTimelineShareData(shrData); //朋友圈分享信息：在需要改分享标题之类时可修改shrData中的值并重先注册本方法
-        // wx.onMenuShareTimeline(shrData); //旧接口
-        // wx.onMenuShareAppMessage(shrData);//旧j
-        wx.hideMenuItems({
-            menuList: [
-                'menuItem:share:qq',
-                'menuItem:share:weiboApp',
-                'menuItem:share:facebook',
-                'menuItem:share:QZone',
-                'menuItem:originPage',
-                'menuItem:readMode',
-                'menuItem:openWithQQBrowser',
-                'menuItem:openWithSafari',
-                'menuItem:share:email',
-                'menuItem:share:brand',
-                'menuItem:copyUrl'
-            ]
-        });
-    });
+    
 </script>
+
 </html>

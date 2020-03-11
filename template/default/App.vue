@@ -1,4 +1,8 @@
 <script>
+var jweixin = require('jweixin-module')  
+jweixin.ready(function(){  
+    // TODO  
+});
 	export default {
 		onLaunch: function() {
 			console.log('App Launch')
@@ -13,5 +17,6 @@
 </script>
 
 <style>
+
 	/*每个页面公共css */
 </style>
