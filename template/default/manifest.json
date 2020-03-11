@@ -71,5 +71,22 @@
     },
     "mp-qq" : {
         "usingComponents" : true
-    }
+    },
+	"h5": {
+		"devServer": {
+			"port": 8080,
+			"disableHostCheck": true,
+			"proxy": {
+				"/venshi": {
+					"target": "https://h5.owoit.com/venshi/",
+					"changeOrigin": true,
+					"secure": false,
+					"ws": false,
+					"pathRewrite": {
+						"^/venshi": ""
+					}
+				}
+			}
+		}
+	}
 }
