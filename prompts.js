@@ -7,7 +7,7 @@ module.exports = [{
     value: 'default'
   },
   {
-    name: '施南传媒H5-TS模板(TypeScript)',
+    name: 'TS模板',
     value: 'default-ts'
   },
   {
