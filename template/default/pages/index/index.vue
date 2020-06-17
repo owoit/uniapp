@@ -1,4 +1,22 @@
 <template>
+<!--	#ifndef H5-->
+	<view id="pageLoading" v-show="showPage.loading">
+		<view class="cont">
+			<view class="loader">
+				<view class="face">
+					<view class="circle"></view>
+				</view>
+				<view class="face">
+					<view class="circle"></view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="pageAD" v-show="showPage.loadingAd">
+		<image src="../../static/img/loadingad.jpg" class="panelAD"></image>
+		<view class="timer">{{djsTimer}}</view>
+	</view>
+<!--#endif-->
 	<view class="content">
 		<view>
 			<image class="logo" src="/static/logo.png"></image>
@@ -8,35 +26,7 @@
 		</view>
 	</view>
 </template>
-
-<script>
-	export default {
-		data() {
-			return {
-				title: '现在你可以修改相关文件进行开发了'
-			}
-		},
-		onLoad() {
-
-		},
-		methods: {
-
-		}
-	}
-</script>
-
-<style>
-	.content {
-		text-align: center;
-		height: 1206upx;
-	}
-
-	.logo {
-		margin-top: 200upx;
-	}
-
-	.title {
-		font-size: 36upx;
-		color: #8f8f94;
-	}
+<script src="./index.js"></script>
+<style lang="scss">
+		@import "./index.scss";
 </style>

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta name="format-detection" content="telephone=no">
     <meta name="author" content="owoit@ishinan.net">
     <meta name="generator" content="idea by ishiann，power by owoit">
@@ -24,13 +24,11 @@
             font-weight: 500;
             text-align: center;
         }
-
         .ad,
         .tousu {
             position: absolute;
             padding-left: .2rem;
-            padding-right: .2rem;
-            ;
+            padding-right: .2rem;;
             border: white solid .05rem;
             top: .4rem;
             z-index: 199203;
@@ -55,96 +53,143 @@
             opacity: .8;
             width: 100vw;
         }
+        #loadingad {
+            position: absolute;
+            z-index: 202002;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            display: flex;
+        }
+
+        .timer {
+            position: absolute;
+            z-index: 202003;
+            font-size: 13px;
+            padding: 1px;
+            color: white;
+            background: #555555;
+            right: 18px;
+            top: 18px;
+        }
+
     </style>
-    <link rel="stylesheet" href="<%= BASE_URL %>static/index.css?<?=$v;?>" />
+    <link rel="stylesheet" href="<%= BASE_URL %>static/index.css?<?=$v;?>"/>
 </head>
 
 <body>
-    <noscript>
-        <strong>请开启JavaScript</strong>
-    </noscript>
-    <div class="shinan">
-        <header>
-            <div class="ad">广告</div>
-            <div class="tousu" onClick="tousu()">投诉</div>
-        </header>
-        <footer id="snfooter">
-            <div class="copy">
-                技术创意:OwOIT@施南传媒
-            </div>
-        </footer>
-    </div>
-    <div id="app"></div <div class="bgm">
+<noscript>
+    <strong>请开启您浏览器的JavaScript功能</strong>
+</noscript>
+<div id="loadingad" >
+<!--   H5模式 全屏广告页面 可自己调整样式-->
+    <img src="<%= BASE_URL %>static/loadingad.jpg" style="align-items: center; align-content: center;width: 100vw">
+    <div class="timer">正在加载 <span id="adDjsTimer">3</span>秒</div>
+</div>
+
+<div class="shinan">
+    <header>
+        <div class="ad">广告</div>
+        <div class="tousu" onClick="tousu()">投诉</div>
+    </header>
+    <footer id="snfooter">
+        <div class="copy">
+            技术创意:OwOIT@施南传媒
+        </div>
+    </footer>
+</div>
+<div id="app"></div>
+<!--背景音乐-->
+<div class="bgm">
     <audio src="<%= BASE_URL %>static/bgm.mp3" id="bgm" autoplay loop preload="metadata" style="display: none;"></audio>
-    </div>
-    <!-- built files will be auto injected -->
-    <script type="text/javascript">
-        var host = window.location.host,
-            apiUrl = '//' + host + "/venshi/?service=";
-        if (host.indexOf('localhost') == -1) {
-            var uid = "<?=$data['id']?>",
-                openid = "<?=$data['openid'];?>",
-                nickname = "<?=$data['nickname'];?>",
-                realname = "<?=$data['realname'];?>",
-                mobile = "<?=$data['mobile'];?>",
-                myAvatar = "<?=$data['avatar'];?>",
-                why = '<?=$why;?>',
-                keyid = '<?=$keyid;?>',
-                formNick = "<?=$fromData['nickname'];?>",
-                formAvat = "<?=$fromData['avatar'];?>",
-                fromOpenid = "<?=$fromData['openid']?>",
-                fromUID = "<?=$fromData['id'];?>",
-                time = parseInt("<?=time();?>");
-        } else {
-            var uid = "59820",
-                openid = "sncmowoit",
-                nickname = "施南传媒",
-                realname = "湖北施南烟雨传媒有限公司",
-                mobile = "18671881885",
-                myAvatar = "",
-                why = '',
-                keyid = 'local',
-                formNick = "施南传媒",
-                formAvat = "",
-                fromOpenid = "sncmowoit",
-                fromUID = "59820",
-                time = parseInt(Date.parse(new Date()) / 1000);
-        }
-        var wxConfig = {
-            debug: false,
-            appId: "<?=$signPackage['appId']?>",
-            timestamp: "<?=$signPackage['timestamp']?>",
-            nonceStr: "<?=$signPackage['nonceStr']?>",
-            signature: "<?=$signPackage['signature']?>",
-            jsApiList: [
-                'updateAppMessageShareData',
-                'updateTimelineShareData',
-                "onMenuShareTimeline",
-                "onMenuShareAppMessage",
-                'hideMenuItems'
-                //自由添加
-            ]
-        };
-    </script>
-</body>
-<script>
-    function tousu() {
-        window.location.href = host + "/?-tousu-" + why + "-index-" + keyid;
+</div>
+<!-- built files will be auto injected -->
+<script type="text/javascript">
+    // NOTICE 以下为保留的页面全局变量，项目中的自定义变量不能和下面的相同
+    var host = window.location.host,
+        apiUrl = '//' + host + "/venshi/?service=";
+    if (host.indexOf('localhost') == -1) {
+        var uid = "<?=$data['id']?>",
+            openid = "<?=$data['openid'];?>",
+            nickname = "<?=$data['nickname'];?>",
+            realname = "<?=$data['realname'];?>",
+            mobile = "<?=$data['mobile'];?>",
+            myAvatar = "<?=$data['avatar'];?>",
+            why = '<?=$why;?>',
+            keyid = '<?=$keyid;?>',
+            formNick = "<?=$fromData['nickname'];?>",
+            formAvat = "<?=$fromData['avatar'];?>",
+            fromOpenid = "<?=$fromData['openid']?>",
+            fromUID = "<?=$fromData['id'];?>",
+            time = parseInt("<?=time();?>");
+            setInterval(function () {
+            time++;//更新时间戳
+              },1000)
+    } else {
+        var uid = "59820",
+            openid = "sncmowoit",
+            nickname = "施南传媒",
+            realname = "湖北施南烟雨传媒有限公司",
+            mobile = "18671881885",
+            myAvatar = "",
+            why = '',
+            keyid = 'local',
+            formNick = "施南传媒",
+            formAvat = "",
+            fromOpenid = "sncmowoit",
+            fromUID = "59820",
+            time = parseInt(Date.parse(new Date()) / 1000);
     }
-    window.onresize = function () {
-        document.getElementById('snfooter').style.display = "none";
-    }
+    var wxConfig = {
+        debug: false,
+        appId: "<?=$signPackage['appId']?>",
+        timestamp: "<?=$signPackage['timestamp']?>",
+        nonceStr: "<?=$signPackage['nonceStr']?>",
+        signature: "<?=$signPackage['signature']?>",
+        jsApiList: [
+            'updateAppMessageShareData',
+            'updateTimelineShareData',
+            "onMenuShareTimeline",
+            "onMenuShareAppMessage",
+            'hideMenuItems'
+            //自由添加
+        ]
+    };
+    var hideMenuList = [
+        "menuItem:share:qq",
+        "menuItem:share:weiboApp",
+        "menuItem:share:facebook",
+        "menuItem:share:QZone",
+        "menuItem:originPage",
+        "menuItem:readMode",
+        "menuItem:openWithQQBrowser",
+        "menuItem:openWithSafari",
+        "menuItem:share:email",
+        "menuItem:share:brand",
+        "menuItem:copyUrl"
+    ];
     var bgmAudio = document.getElementById('bgm');
     document.addEventListener('WeixinJSBridgeReady', () => {
+        //广告倒计时
+        var addjs = 3;
+        var addjstimer = setInterval(function () {
+            addjs--;
+            if(addjs<=0){
+                document.getElementById('loadingad').style.display = "none";
+                clearInterval(addjstimer)
+            }
+            document.getElementById('adDjsTimer').innerText = addjs;
+        },1000);
+        //背景音乐的开关
         bgmAudio.load();
         bgmAudio.play();
-    })
-
+    });
     //定义消息分享数据
     var shrData = {
         title: '分享标题',
         desc: '分享摘要',
-        imgUrl: "<?=$data['ShrImg']?>", //转发的小图标默认存放在 项目文件夹下的"img/head.jpg" 正方形文件不宜超过50k,如果文件不存在就默认为转发人的头像，也可以自己根据项目需求写其他路径
+        imgUrl: "<?=$data['ShrImg']?>", //转发的小图标默认存放在 项目文件夹下的"img/head.jpg" 或者static/img/head.jpg正方形文件不宜超过50k,如果文件不存在就默认为转发人的头像，也可以自己根据项目需求写其他路径
         link: "<?=$data['ShrLink']?>", //一般不需要改默认带转发人信息需要传特殊参数时可以更改
         trigger: function (res) {
 
@@ -160,7 +205,14 @@
             //已经失效
         }
     };
-    
+    //跳转通用投诉链接
+    function tousu() {
+        window.location.href = host + "/?-tousu-" + why + "-index-" + keyid;
+    }
+    //横屏或呼起键盘后隐藏底部版权避免遮挡
+    window.onresize = function () {
+        document.getElementById('snfooter').style.display = "none";
+    }
 </script>
-
+</body>
 </html>

@@ -1,7 +1,7 @@
 {
-	"name": "{{name}}",
+	"name": "loading",
 	"appid": "__UNI__EAB7D22",
-	"description": "",
+	"description": "施南传媒",
 	"versionName": "1.0.0",
 	"versionCode": "100",
 	"transformPx": false,
