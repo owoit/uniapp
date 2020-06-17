@@ -91,7 +91,8 @@ export default {
                 jwx.updateAppMessageShareData(shrData);
                 jwx.updateTimelineShareData(shrData);
             }
-        )
+        );
+       // #endif
        // #ifndef H5
         //小程序环境下的广告倒计时或加载页面，h5模式请修改public下的index.html 仅为示例请自行修改
          var addjstimer = setInterval(function () {
