@@ -1,42 +1,32 @@
 <template>
+<!--	#ifndef H5-->
+	<view id="pageLoading" v-show="showPage.loading">
+		<view class="cont">
+			<view class="loader">
+				<view class="face">
+					<view class="circle"></view>
+				</view>
+				<view class="face">
+					<view class="circle"></view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="pageAD" v-show="showPage.loadingAd">
+		<image src="../../static/img/loadingad.jpg" class="panelAD"></image>
+		<view class="timer">{{djsTimer}}</view>
+	</view>
+<!--#endif-->
 	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
+		<view>
+			<image class="logo" src="/static/logo.png"></image>
+		</view>
 		<view>
 			<text class="title">{{title}}</text>
 		</view>
 	</view>
 </template>
-
-<script>
-	export default {
-		data() {
-			return {
-				title: 'Hello'
-			}
-		},
-		onLoad() {
-
-		},
-		methods: {
-
-		}
-	}
-</script>
-
-<style>
-	.content {
-		text-align: center;
-		height: 400upx;
-	}
-
-	.logo {
-		height: 200upx;
-		width: 200upx;
-		margin-top: 200upx;
-	}
-
-	.title {
-		font-size: 36upx;
-		color: #8f8f94;
-	}
+<script src="./index.js"></script>
+<style lang="scss">
+		@import "./index.scss";
 </style>

@@ -1,14 +1,22 @@
 module.exports = [{
   type: 'list',
   name: 'template',
-  message: '请选择 uni-app 模板',
+  message: '请使用模板',
   choices: [{
-    name: '默认模板',
+    name: '施南传媒H5模板',
     value: 'default'
   },
   {
-    name: '默认模板(TypeScript)',
+    name: 'TS模板',
     value: 'default-ts'
+  },
+  {
+    name: 'default默认模板',
+    value: 'uni-preset-vue/template/default/'
+  },
+  {
+    name: 'default默认模板',
+    value: 'uni-preset-vue/template/default-ts/'
   },
   {
     name: 'Hello uni-app',

@@ -12,7 +12,7 @@
 	export default Vue.extend({
 		data() {
 			return {
-				title: 'Hello'
+				title: '开始开发吧！'
 			}
 		},
 		onLoad() {

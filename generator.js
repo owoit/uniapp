@@ -20,6 +20,9 @@ async function generate (dir, files, base = '', rootOptions = {}) {
       if (path.basename(filename) === 'manifest.json') {
         content = content.replace('{{name}}', rootOptions.projectName || '')
       }
+      if (path.basename(filename) === 'manifest.json') {
+        content = content.replace('{{name}}', rootOptions.projectName || '')
+      }
       if (filename.charAt(0) === '_' && filename.charAt(1) !== '_') {
         files[`.${filename.slice(1)}`] = content
       } else if (filename.charAt(0) === '_' && filename.charAt(1) === '_') {
@@ -36,7 +39,10 @@ module.exports = (api, options, rootOptions) => {
     return {
       dependencies: {
         'regenerator-runtime': '^0.12.1',// 锁定版本，避免高版本在小程序中出错
-        '@dcloudio/uni-helper-json': '*'
+        '@dcloudio/uni-helper-json': '*',
+        'jweixin-module': '*',
+        'node-sass':'*',
+        'sass-loader':'*'
       },
       devDependencies: {
         'postcss-comment': '^2.0.0',
@@ -89,7 +95,6 @@ module.exports = (api, options, rootOptions) => {
       const ora = require('ora')
       const home = require('user-home')
       const download = require('download-git-repo')
-
       const spinner = ora('模板下载中...')
       spinner.start()
 

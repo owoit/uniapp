@@ -1,10 +1,13 @@
 {
-	"name": "",
-	"appid": "",
+	"name": "loading",
+	"appid": "__UNI__EAB7D22",
 	"description": "",
 	"versionName": "1.0.0",
 	"versionCode": "100",
 	"transformPx": false,
+	"uniStatistics": {    
+		"enable": true//全局开启  
+	},   
 	"app-plus": { /* 5+App特有相关 */
 		"usingComponents": true,
 		"splashscreen": {
@@ -56,7 +59,7 @@
 	"mp-weixin": { /* 微信小程序特有相关 */
 		"appid": "",
 		"setting": {
-			"urlCheck": false
+			"urlCheck": true
 		},
 		"usingComponents": true
 	},
@@ -71,5 +74,32 @@
     },
     "mp-qq" : {
         "usingComponents" : true
-    }
+    },
+	"h5": {
+		"devServer": {
+			"port": 8080,
+			"disableHostCheck": true,
+			"proxy": {
+				"/venshi": {
+					"target": "https://h5.owoit.com/venshi/",
+					"changeOrigin": true,
+					"secure": false,
+					"ws": false,
+					"pathRewrite": {
+						"^/venshi": ""
+					}
+				},
+				"/app": {
+					"target": "https://cms.owoit.com/app/",
+					"changeOrigin": true,
+					"secure": false,
+					"ws": false,
+					"pathRewrite": {
+						"^/app": ""
+					}
+				}
+
+			}
+		}
+	}
 }
