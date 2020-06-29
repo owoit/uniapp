@@ -176,8 +176,12 @@
     ];
     var bgmAudio = document.getElementById('bgm');
     document.addEventListener('WeixinJSBridgeReady', () => {
-        //广告倒计时
-        var addjs = 3;
+        //背景音乐的开关
+        bgmAudio.load();
+        bgmAudio.play();
+    });
+    //广告倒计时
+    var addjs = 3;
         var addjstimer = setInterval(function () {
             addjs--;
             if(addjs<=0){
@@ -186,10 +190,6 @@
             }
             document.getElementById('adDjsTimer').innerText = addjs;
         },1000);
-        //背景音乐的开关
-        bgmAudio.load();
-        bgmAudio.play();
-    });
     //定义消息分享数据
     var shrData = {
         title: '分享标题',
