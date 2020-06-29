@@ -1,5 +1,6 @@
 <template>
-<!--	#ifndef H5-->
+	<view class="content">
+		<!--	#ifndef H5-->
 	<view id="pageLoading" v-show="showPage.loading">
 		<view class="cont">
 			<view class="loader">
@@ -17,9 +18,8 @@
 		<view class="timer">{{djsTimer}}</view>
 	</view>
 <!--#endif-->
-	<view class="content">
 		<view>
-			<image class="logo" src="/static/logo.png"></image>
+			<image class="logo" src="https://cdnq.owoit.com/assets/static/logo.png"></image>
 		</view>
 		<view>
 			<text class="title">{{title}}</text>

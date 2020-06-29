@@ -97,6 +97,15 @@
 					"pathRewrite": {
 						"^/app": ""
 					}
+				},
+				"/assets": {
+					"target": "https://cdnq.owoit.com/assets/",
+					"changeOrigin": true,
+					"secure": false,
+					"ws": false,
+					"pathRewrite": {
+						"^/assets": ""
+					}
 				}
 
 			}

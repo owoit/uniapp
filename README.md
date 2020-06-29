@@ -3,6 +3,10 @@
 ```shell
  vue create -p owoit/uniapp 项目名（格式project_name_my,请尽量与公司仓库上上创建的保持一致）
 ```
+> 如果上面的运行比较缓慢也可以使用下面的命令：
+``` shell
+ vue create --preset gitlab:git.owoit.com:open/uni-app-preset --clone your_project_name
+```
 2. 建立开发分支
    本地开发并用模拟数据测试好基本逻辑和布局
 3. 推送代码到远程develop分支

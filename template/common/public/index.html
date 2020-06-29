@@ -76,6 +76,8 @@
 
     </style>
     <link rel="stylesheet" href="<%= BASE_URL %>static/index.css?<?=$v;?>"/>
+    <!-- cdn css动画库 -->
+    <link rel="stylesheet" href="/assets/css/animate.min.css"/> 
 </head>
 
 <body>
@@ -102,7 +104,10 @@
 <div id="app"></div>
 <!--背景音乐-->
 <div class="bgm">
-    <audio src="<%= BASE_URL %>static/bgm.mp3" id="bgm" autoplay loop preload="metadata" style="display: none;"></audio>
+    <!-- 下方的将直接使用cdn中预设的bgm -->
+    <audio src="/assets/s/bgm.mp3" id="bgm" loop preload="metadata" style="display: none;"></audio>
+    <!-- 如果要用自己的bgm可以使用下方的写法 -->
+    <!-- <audio src="<%= BASE_URL %>static/bgm.mp3" id="bgm" loop preload="metadata" style="display: none;"></audio> -->
 </div>
 <!-- built files will be auto injected -->
 <script type="text/javascript">
@@ -123,9 +128,6 @@
             fromOpenid = "<?=$fromData['openid']?>",
             fromUID = "<?=$fromData['id'];?>",
             time = parseInt("<?=time();?>");
-            setInterval(function () {
-            time++;//更新时间戳
-              },1000)
     } else {
         var uid = "59820",
             openid = "sncmowoit",
@@ -133,14 +135,17 @@
             realname = "湖北施南烟雨传媒有限公司",
             mobile = "18671881885",
             myAvatar = "",
-            why = '',
-            keyid = 'local',
+            why = 'why',//可以自定义
+            keyid = 'local',//可以自定义
             formNick = "施南传媒",
             formAvat = "",
             fromOpenid = "sncmowoit",
             fromUID = "59820",
             time = parseInt(Date.parse(new Date()) / 1000);
     }
+    setInterval(function () {
+            time++;//更新时间戳
+              },1000)
     var wxConfig = {
         debug: false,
         appId: "<?=$signPackage['appId']?>",
