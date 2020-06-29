@@ -5,7 +5,7 @@
 ```
 > 如果上面的运行比较缓慢也可以使用下面的命令：
 ``` shell
- vue create --preset gitlab:git.owoit.com:open/uni-app-preset --clone your_project_name
+vue create -p gitlab:git.owoit.com:open/uni-app-preset -c  your_project_name
 ```
 2. 建立开发分支
    本地开发并用模拟数据测试好基本逻辑和布局
