@@ -41,8 +41,8 @@ module.exports = (api, options, rootOptions) => {
         'regenerator-runtime': '^0.12.1',// 锁定版本，避免高版本在小程序中出错
         '@dcloudio/uni-helper-json': '*',
         'jweixin-module': '*',
-        'node-sass':'*',
-        'sass-loader':'*'
+        'node-sass': '^4.11.0',
+        'sass-loader': '^7.3.0'// 锁定版本，避免高版本编译出错 https://ask.dcloud.net.cn/question/101104 https://segmentfault.com/a/1190000020392688?utm_source=tag-newest
       },
       devDependencies: {
         'postcss-comment': '^2.0.0',
@@ -57,7 +57,9 @@ module.exports = (api, options, rootOptions) => {
       return {
         dependencies: {
           'vue-class-component': '^6.3.2',
-          'vue-property-decorator': '^8.0.0'
+          'vue-property-decorator': '^8.0.0',
+          'node-sass': '^4.11.0',
+          'sass-loader': '^7.3.0'
         },
         devDependencies: {
           '@babel/plugin-syntax-typescript': '^7.2.0',
@@ -71,7 +73,7 @@ module.exports = (api, options, rootOptions) => {
       return {
         devDependencies: {
           'node-sass': '^4.11.0',
-          'sass-loader': '^7.1.0'
+          'sass-loader': '^7.3.0'
         }
       }
     })
