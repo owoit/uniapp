@@ -1,6 +1,5 @@
 .yarn-integrity
 .bin/
-*.md
 .npmignore
 *.yml
 *.jshintrc
@@ -14,3 +13,4 @@ LICENSE.MIT
 .idea/
 package-lock.json
 .vscode/
+node_modules/**/*.md
