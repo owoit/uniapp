@@ -13,3 +13,4 @@ license
 LICENSE.MIT
 .idea/
 package-lock.json
+.vscode/
