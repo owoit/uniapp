@@ -38,6 +38,9 @@ async function generate (dir, files, base = '', rootOptions = {}) {
 module.exports = (api, options, rootOptions) => {
   api.extendPackage(pkg => {
     return {
+      scripts:{
+        "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md"
+      },
       dependencies: {
         'regenerator-runtime': '^0.12.1',// 锁定版本，避免高版本在小程序中出错
         '@dcloudio/uni-helper-json': '*',
@@ -49,13 +52,29 @@ module.exports = (api, options, rootOptions) => {
         'postcss-comment': '^2.0.0',
         '@dcloudio/types': '*',
         'miniprogram-api-typings': '*',
-        'mini-types': '*'
-      }
+        'mini-types': '*',
+        "cz-conventional-changelog": "^3.2.0",
+        "cz-customizable": "*",
+        "husky": "^5.1.1",
+      },
+      "config": {
+        "commitizen": {
+          "path": "./node_modules/cz-customizable"
+        }
+      },
+      "husky": {
+        "hooks": {
+          "commit-msg": "validate-commit-msg"
+        }
+      },
     }
   })
   if (options.template === 'default-ts') { // 启用 typescript
     api.extendPackage(pkg => {
       return {
+        scripts:{
+          "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md"
+        },
         dependencies: {
           'vue-class-component': '^6.3.2',
           'vue-property-decorator': '^8.0.0',
@@ -65,7 +84,10 @@ module.exports = (api, options, rootOptions) => {
         devDependencies: {
           '@babel/plugin-syntax-typescript': '^7.2.0',
           '@vue/cli-plugin-typescript': '*',
-          'typescript': api.hasPlugin('eslint') ? '~3.1.1' : '^3.0.0'
+          'typescript': api.hasPlugin('eslint') ? '~3.1.1' : '^3.0.0',
+          "cz-conventional-changelog": "^3.2.0",
+          "cz-customizable": "*",
+          "husky": "^5.1.1",
         }
       }
     })
