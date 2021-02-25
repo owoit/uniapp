@@ -39,7 +39,7 @@ module.exports = (api, options, rootOptions) => {
   api.extendPackage(pkg => {
     return {
       scripts:{
-        "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md"
+        "version": "conventional-changelog -p cmyr-config -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md"
       },
       dependencies: {
         'regenerator-runtime': '^0.12.1',// 锁定版本，避免高版本在小程序中出错
@@ -56,6 +56,7 @@ module.exports = (api, options, rootOptions) => {
         "cz-conventional-changelog": "^3.2.0",
         "cz-customizable": "*",
         "husky": "^5.1.1",
+        "conventional-changelog-cmyr-config": "^1.2.3"
       },
       "config": {
         "commitizen": {
@@ -67,6 +68,57 @@ module.exports = (api, options, rootOptions) => {
           "commit-msg": "validate-commit-msg"
         }
       },
+      "changelog": {
+        "authorName": true,
+        "authorEmail": false,
+        "language": "zh",
+        "settings": {
+          "feat": {
+            "title": "✨ 新功能",
+            "enable": true
+          },
+          "uniapp": {
+            "title": "🎫 合并官方更新",
+            "enable": true
+          },
+          "fix": {
+            "title": "🐛 Bug 修复"
+          },
+          "perf": {
+            "title": "⚡ 性能优化"
+          },
+          "revert": {
+            "title": "⏪ 回退"
+          },
+          "refactor": {
+            "title": "♻ 代码重构"
+          },
+          "docs": {
+            "title": "📝 文档",
+            "enable": true
+          },
+          "style": {
+            "title": "💄 风格",
+            "enable": false
+          },
+          "test": {
+            "title": "✅ 测试",
+            "enable": false
+          },
+          "build": {
+            "title": "👷‍ 构建",
+            "enable": false
+          },
+          "ci": {
+            "title": "🔧 CI 配置",
+            "enable": false
+          },
+          "chore": {
+            "title": "🎫 其他更新",
+            "enable": false
+          }
+        }
+      }
     }
   })
   if (options.template === 'default-ts') { // 启用 typescript

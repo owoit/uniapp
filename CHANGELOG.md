@@ -29,7 +29,7 @@
 
 ### 🐛 Bug 修复
 
-* **dependencies:** glob ([8858cf6](https://git.owoit.com/open/uni-app-preset/commit/8858cf6)) by: **iDawn** (hzy@v0718.com)
+* **g:** glob ([8858cf6](https://git.owoit.com/open/uni-app-preset/commit/8858cf6)) by: **iDawn** (hzy@v0718.com)
 * types ([9757681](https://git.owoit.com/open/uni-app-preset/commit/9757681)) by: **qiang** (guoshengqiang@live.com)
 * **autoprefixer:** add remove:false ([7d5bddc](https://git.owoit.com/open/uni-app-preset/commit/7d5bddc)) by: **fxy060608** (fxy060608@gmail.com)
 * **postcss:** add path ([64059a7](https://git.owoit.com/open/uni-app-preset/commit/64059a7)) by: **fxy060608** (fxy060608@gmail.com)
