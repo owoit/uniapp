@@ -1,6 +1,6 @@
 {
   "name": "uni-preset-vue",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "uni-app preset for vue-cli",
   "main": "index.js",
   "scripts": {
@@ -24,9 +24,9 @@
     "user-home": "^2.0.0"
   },
   "devDependencies": {
+    "conventional-changelog-cli": "^2.1.1",
     "conventional-changelog-cmyr-config": "^1.2.3",
     "cz-conventional-changelog": "^3.2.0",
-    "conventional-changelog-cli": "^2.1.1",
     "cz-customizable": "*",
     "husky": "^5.1.1"
   },
@@ -43,11 +43,15 @@
   "changelog": {
     "authorName": true,
     "authorEmail": true,
-    "language": "zh",//本项支持zh和en配置，默认为en，即生成英文changelog，配置后以下settings可省略。（但如果配置了settings会覆盖language的默认配置）
-    "settings": {//cmyr-config新增功能，可自定义标题和是否启用某项
+    "language": "zh",
+    "settings": {
       "feat": {
-        "title": "✨ 新功能",//定义标题
-        "enable": true //定义是否启用该类型，注意feat、fix、perf、revert、refactor这几个类型的commit无法关闭
+        "title": "✨ 新功能",
+        "enable": true
+      },
+      "uniapp": {
+        "title": "🎫 合并官方更新",
+        "enable": true
       },
       "fix": {
         "title": "🐛 Bug 修复"
@@ -63,7 +67,7 @@
       },
       "docs": {
         "title": "📝 文档",
-        "enable": false
+        "enable": true
       },
       "style": {
         "title": "💄 风格",
