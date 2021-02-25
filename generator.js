@@ -13,7 +13,6 @@ async function generate (dir, files, base = '', rootOptions = {}) {
   }).forEach(rawPath => {
     const sourcePath = path.resolve(dir, rawPath)
     const filename = path.join(base, rawPath)
-
     if (isBinary.sync(sourcePath)) {
       files[filename] = fs.readFileSync(sourcePath) // return buffer
     } else {
