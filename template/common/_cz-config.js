@@ -46,7 +46,7 @@ module.exports = {
     allowCustomScopes: true,
     allowBreakingChanges: ['特性', '修复'],
     // skip any questions you want
-    skipQuestions: ['body', 'footer'],
+    // skipQuestions: ['body', 'footer'],
 
     // limit subject length
     subjectLimit: 100,
