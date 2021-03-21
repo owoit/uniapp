@@ -17,6 +17,8 @@
 </script>
 
 <style>
-
 	/*每个页面公共css */
+	/*#ifndef H5*/
+	@import 'css/ani.css';/*动画库animate.css* h5模式直接通过index.html引用了无需重复引用/
+	/*endif*/
 </style>
